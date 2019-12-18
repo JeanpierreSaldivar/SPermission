@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_mai.*
 /**
  * BY
  */
-class SaldivarActi : Activity() {
+class SaldivarPermissions : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,19 +34,20 @@ class SaldivarActi : Activity() {
         buttonsAudio.setOnClickListener{checkAudioPermissions()}
     }
 
-    public fun setPermissionHandler(permission: String,context: Context){
+     fun  setPermissionHandler(permission: String,context: Context): Boolean {
+        var permiso = false
         Dexter.withActivity(context as Activity?)
                 .withPermission(permission)
                 .withListener(object: PermissionListener{
-                    override fun onPermissionGranted(response: PermissionGrantedResponse) {
-                        /*setPermissionStatus(textView, PermissionStatusEnum.GRANTED)*/
+                    override fun onPermissionGranted(response: PermissionGrantedResponse){
+                        permiso = true
                     }
 
                     override fun onPermissionDenied(response: PermissionDeniedResponse) {
-                        if (response.isPermanentlyDenied){
-                            /*setPermissionStatus(textView, PermissionStatusEnum.PERMANENTLY_DENIED)*/
+                        permiso = if (response.isPermanentlyDenied){
+                            false
                         }else{
-                            /*setPermissionStatus(textView, PermissionStatusEnum.DENIED)*/
+                            false
                         }
                     }
 
@@ -54,23 +55,8 @@ class SaldivarActi : Activity() {
                         token.continuePermissionRequest()
                     }
                 }).check()
-    }
 
-    public fun setPermissionStatus(textView: TextView,status: PermissionStatusEnum){
-        when(status){
-            PermissionStatusEnum.GRANTED ->{
-                textView.text = getString(R.string.permission_status_grated)
-                textView.setTextColor(ContextCompat.getColor(this,R.color.colorPermissionStatusGrated))
-            }
-            PermissionStatusEnum.DENIED ->{
-                textView.text = getString(R.string.permission_status_denied)
-                textView.setTextColor(ContextCompat.getColor(this,R.color.colorPermissionStatusDenied))
-            }
-            PermissionStatusEnum.PERMANENTLY_DENIED ->{
-                textView.text = getString(R.string.permission_status_denied_permanently)
-                textView.setTextColor(ContextCompat.getColor(this,R.color.colorPermissionStatusPermanentlyDenied))
-            }
-        }
+         return permiso
 
     }
 

@@ -17,7 +17,7 @@ import com.saldivar.permisolibrary.enums.PermissionStatusEnum
 import kotlinx.android.synthetic.main.activity_mai.*
 
 /**
- * BY
+ * BY Saldivar Leon Cesar
  */
 class SaldivarPermissions : Activity() {
 

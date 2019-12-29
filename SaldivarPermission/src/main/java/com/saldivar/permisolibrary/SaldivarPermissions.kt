@@ -19,22 +19,22 @@ import kotlinx.android.synthetic.main.activity_mai.*
 /**
  * BY Saldivar Leon Cesar
  */
-class SaldivarPermissions : Activity() {
+class Saldivar : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mai)
 
-        setButtonClick()
+        /*setButtonClick()*/
     }
 
-    private fun setButtonClick() {
+    /*private fun setButtonClick() {
         buttonCamera.setOnClickListener{checkCameraPermissions()}
         buttonsContacts.setOnClickListener{checkContactsPermissions()}
         buttonsAudio.setOnClickListener{checkAudioPermissions()}
-    }
+    }*/
 
-     fun  setPermissionHandler(permission: String,context: Context): Boolean {
+     fun  PermissionsHandler(permission: String,context: Context): Boolean {
         var permiso = false
         Dexter.withActivity(context as Activity?)
                 .withPermission(permission)
@@ -60,7 +60,7 @@ class SaldivarPermissions : Activity() {
 
     }
 
-    private fun checkCameraPermissions()= setPermissionHandler(Manifest.permission.CAMERA,this)
+   /* private fun checkCameraPermissions()= setPermissionHandler(Manifest.permission.CAMERA,this)
     private fun checkContactsPermissions() = setPermissionHandler(Manifest.permission.READ_CONTACTS,this)
-    private fun checkAudioPermissions()= setPermissionHandler(Manifest.permission.RECORD_AUDIO,this)
+    private fun checkAudioPermissions()= setPermissionHandler(Manifest.permission.RECORD_AUDIO,this)*/
 }

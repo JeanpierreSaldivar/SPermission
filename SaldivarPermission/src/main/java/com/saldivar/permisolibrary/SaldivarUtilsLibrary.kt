@@ -174,7 +174,7 @@ fun ocultarBarsSaldivar(context: Activity){
 
 /**Buscador automatico*/
 
-fun searchAutomatic(repetitiveTask:()->Unit,successTask:()->Unit) {
+fun searchAutomaticSaldivar(repetitiveTask:()->Unit,successTask:()->Unit) {
     CoroutineScope(Dispatchers.Default).async {
         while (wordSearch == newWord) {
             delay(1500)
